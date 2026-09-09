@@ -8,6 +8,7 @@ The financial and macroeconomic analysis process requires extracting precise num
 
 Veriscribe solves this by acting as a **Fact Knowledge Layer**. Instead of just indexing text, it parses PDFs to extract structured atomic facts (Statement, Value, Attribute, Temporal Scope, and Evidence Quote). It then compares facts across documents using a hybrid deterministic-and-LLM approach to identify whether they **corroborate**, **contradict**, or are **reconciled** (e.g., due to different time scopes).
 
+> **Demo Video**: [Watch the Veriscribe walkthrough on Google Drive](https://drive.google.com/file/d/1wq21vgszd7wVb7vzN5dUjV7ltlWmi-3e/view?usp=sharing)
 ## Architecture
 
 ```mermaid
