@@ -145,3 +145,14 @@ python -m orchestration.cli status
 2. **Relationship Revalidation**: If comparator logic changes, relationships computed with older logic are not automatically revalidated. A manual repair script must be run.
 3. **Borderless Tables**: `pdfplumber` relies on visible lines for tables. Borderless tables are parsed as raw text, relying heavily on the LLM to interpret alignment.
 4. **Justification Truncation**: UI truncation of LLM outputs is currently handled via CSS rather than modifying raw database strings, keeping the evidence trail intact.
+
+---
+
+## Next Steps / Future Scope
+
+If this prototype were to be scaled into a production system, the following extensions would provide the highest ROI:
+
+1. **Graph Database Migration**: As the dataset scales to hundreds of documents, relational querying becomes complex. Migrating the relationship layer from SQLite to a native Graph Database (like Neo4j) would allow for deep traversal (e.g., "Find all facts across the repository that eventually trace back to this contradicted root fact").
+2. **Visual Source Highlighting**: The backend already extracts `evidence_bbox` coordinates. The frontend could be extended to render the actual PDF canvas and visually highlight the exact bounding box of the extracted fact.
+3. **Vision-Language Models (VLMs) for Layout**: Replacing the current `pdfplumber` heuristic parser with a pure VLM that directly ingests page images to bypass borderless table and multi-column parsing issues entirely.
+4. **Human-in-the-Loop Feedback Loop**: Add an interface for analysts to accept, reject, or correct the LLM Judge's relationship verdicts, saving these corrections to fine-tune a smaller, domain-specific open-source model in the future.
