@@ -8,6 +8,41 @@ The financial and macroeconomic analysis process requires extracting precise num
 
 Veriscribe solves this by acting as a **Fact Knowledge Layer**. Instead of just indexing text, it parses PDFs to extract structured atomic facts (Statement, Value, Attribute, Temporal Scope, and Evidence Quote). It then compares facts across documents using a hybrid deterministic-and-LLM approach to identify whether they **corroborate**, **contradict**, or are **reconciled** (e.g., due to different time scopes).
 
+## Architecture
+
+```mermaid
+flowchart TD
+    subgraph Client
+        UI[React/Vite Frontend]
+    end
+
+    subgraph API Layer
+        API[FastAPI Service]
+    end
+
+    subgraph Processing Pipeline
+        Ingest[PDF Ingestion & Layout Analysis]
+        Extract[LLM Extraction\nDeepSeek/Claude]
+        Canonicalize[Taxonomy & Unit Normalization]
+        Compare{Comparator\nDeterministic + LLM Judge}
+    end
+
+    subgraph Storage
+        SQLite[(SQLite\nFacts & Relationships)]
+        Chroma[(ChromaDB\nVector Embeddings)]
+    end
+
+    UI <--> API
+    API --> Ingest
+    Ingest --> Extract
+    Extract --> Canonicalize
+    Canonicalize --> Compare
+    
+    Canonicalize <--> Chroma
+    Compare <--> SQLite
+    API <--> SQLite
+```
+
 ---
 
 ## Tech Stack & Reasoning
