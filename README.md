@@ -109,6 +109,8 @@ echo "OPENROUTER_API_KEY=your_key_here" > .env
 
 ### 2. Running the API
 
+> **Reviewer Note:** A pre-populated SQLite database (`output/veriscribe.db`) with 74 facts and the 4 requested demo cases is included in the repository. You can instantly run the API and UI below to evaluate the system **without needing an OpenRouter API key** or running the ingestion pipeline yourself.
+
 ```bash
 uvicorn api.main:app --host 0.0.0.0 --port 8000
 ```

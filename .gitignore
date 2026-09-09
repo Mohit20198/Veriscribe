@@ -59,7 +59,8 @@ env.bak/
 venv.bak/
 
 # Project specific
-output/
+output/*
+!output/veriscribe.db
 data/uploads/
 .DS_Store
 
