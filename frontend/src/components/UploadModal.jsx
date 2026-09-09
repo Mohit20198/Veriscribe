@@ -4,7 +4,7 @@ import { api } from '../api';
 // Poll until status = done or error
 async function pollStatus(docId, onUpdate) {
   let attempts = 0;
-  while (attempts < 60) {
+  while (attempts < 300) { // 300 attempts * 3s = 900s (15 minutes)
     await new Promise(r => setTimeout(r, 3000));
     attempts++;
     try {
@@ -44,7 +44,7 @@ export default function UploadModal({ onClose, onDone }) {
 
       setProgress({ status: 'processing', message: 'Processing — extracting facts…' });
       const final = await pollStatus(docId, s => {
-        setProgress({ status: s.status, message: `Processing (${s.fact_count ?? 0} facts found so far)…` });
+        setProgress({ status: s.status, message: `Processing... (This may take several minutes for large PDFs)` });
       });
 
       if (final?.status === 'done') {
