@@ -1,6 +1,6 @@
 // Single source of truth for the API base URL.
 // Set VITE_API_BASE_URL in frontend/.env to override.
-export const API_BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000';
+export const API_BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://127.0.0.1:8000';
 
 async function request(path, options = {}) {
   const url = `${API_BASE}${path}`;
