@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About — Veriscribe Epistemic Knowledge Layer</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#2d3133",
+            "on-primary-container": "#cad3ff",
+            "secondary-fixed-dim": "#bec6e0",
+            "on-secondary-fixed-variant": "#3f465c",
+            "on-tertiary-fixed": "#0b1c30",
+            "background": "#f7f9fb",
+            "on-surface-variant": "#434655",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed": "#131b2e",
+            "primary-fixed": "#dce1ff",
+            "inverse-primary": "#b7c4ff",
+            "on-tertiary": "#ffffff",
+            "primary-fixed-dim": "#b7c4ff",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "surface-container": "#eceef0",
+            "error": "#ba1a1a",
+            "tertiary-fixed-dim": "#b7c8e1",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e0e3e5",
+            "tertiary-fixed": "#d3e4fe",
+            "on-background": "#191c1e",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#e0e3e5",
+            "on-tertiary-fixed-variant": "#38485d",
+            "inverse-on-surface": "#eff1f3",
+            "on-secondary-container": "#5c647a",
+            "surface-container-high": "#e6e8ea",
+            "surface-dim": "#d8dadc",
+            "tertiary-container": "#4d5d73",
+            "on-primary-fixed-variant": "#0039b5",
+            "on-primary": "#ffffff",
+            "primary": "#0037b0",
+            "surface": "#f7f9fb",
+            "surface-tint": "#2151da",
+            "secondary-container": "#dae2fd",
+            "on-primary-fixed": "#001551",
+            "secondary": "#565e74",
+            "primary-container": "#1d4ed8",
+            "tertiary": "#36455b",
+            "outline-variant": "#c4c5d7",
+            "outline": "#747686",
+            "on-tertiary-container": "#c5d6f0",
+            "surface-container-low": "#f2f4f6",
+            "on-surface": "#191c1e",
+            "surface-bright": "#f7f9fb",
+            "secondary-fixed": "#dae2fd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "layout-margin-desktop": "1.5rem",
+            "space-xl": "2rem",
+            "space-base": "1rem",
+            "layout-margin-mobile": "0.75rem",
+            "space-2xs": "0.125rem",
+            "space-md": "0.75rem",
+            "column-gutter": "1rem",
+            "space-sm": "0.5rem",
+            "panel-split-gutter": "1px",
+            "space-2xl": "3rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "display-lg-mobile": ["Inter"],
+            "caption": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "mono-metric-lg": ["JetBrains Mono"],
+            "mono-metric-md": ["JetBrains Mono"],
+            "headline-sm": ["Inter"],
+            "mono-label": ["JetBrains Mono"],
+            "body-sm": ["Inter"],
+            "title-md": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "body-lg": ["15px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "caption": ["11px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "mono-metric-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "mono-metric-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "mono-label": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "title-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component from JSON) -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-surface-variant dark:border-outline-variant w-full sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-layout-margin-desktop py-space-sm max-w-full">
+<!-- Brand & Left Navigation Links -->
+<div class="flex items-center space-x-8">
+<a class="text-headline-sm font-headline-sm text-on-surface dark:text-inverse-on-surface tracking-tight font-semibold" href="#">
+          Veriscribe
+        </a>
+<nav class="hidden md:flex items-center space-x-6 pt-1">
+<a class="text-on-surface-variant dark:text-on-tertiary-container pb-space-xs font-body-md text-body-md hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+            Home
+          </a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container pb-space-xs font-body-md text-body-md hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+            Documents
+          </a>
+<a class="text-on-surface-variant dark:text-on-tertiary-container pb-space-xs font-body-md text-body-md hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="#">
+            Explore Facts
+          </a>
+<a class="border-b-2 border-primary text-primary dark:border-inverse-primary dark:text-inverse-primary pb-space-xs font-title-md text-title-md" href="#">
+            About
+          </a>
+</nav>
+</div>
+<!-- Trailing Action & Metadata -->
+<div class="flex items-center space-x-5">
+<span class="text-mono-metric-md font-mono-metric-md text-on-surface-variant hidden sm:inline-block">
+          12 documents · 340 facts
+        </span>
+<button class="bg-primary-container text-on-primary px-3.5 py-1.5 rounded text-body-md font-title-md hover:bg-primary transition-colors duration-150 flex items-center space-x-1.5 focus:outline-none focus:ring-1 focus:ring-primary-container">
+<span class="material-symbols-outlined text-[16px]">upload_file</span>
+<span>Upload PDF</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Editorial Architectural Canvas -->
+<main class="flex-grow w-full">
+<div class="max-w-3xl mx-auto py-16 px-6">
+<!-- Academic Document Header -->
+<div class="mb-12 border-b border-surface-variant pb-8">
+<div class="inline-flex items-center gap-1.5 px-2 py-0.5 border border-outline-variant bg-surface-container-lowest text-on-surface-variant font-mono-label text-mono-label tracking-wider uppercase mb-5">
+<span class="text-primary font-mono-label font-bold">[</span>
+          ARCHITECTURAL SPECIFICATION &amp; METHODOLOGY
+          <span class="text-primary font-mono-label font-bold">]</span>
+</div>
+<h1 class="text-display-lg font-display-lg text-on-surface tracking-tight mb-4">
+          The Epistemic Architecture Behind Veriscribe
+        </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant leading-relaxed">
+          A deterministic, cross-document fact extraction and reconciliation framework designed to eliminate hallucination in high-stakes domain workflows.
+        </p>
+</div>
+<!-- Article Sections (Multi-Pane Grid Discipline & Strict Typographic Hierarchy) -->
+<article class="space-y-12">
+<!-- Section 1 -->
+<section class="group">
+<div class="flex items-baseline space-x-3 mb-3">
+<span class="font-mono-label text-mono-label text-primary font-bold">01 /</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface tracking-tight">
+              The Problem with Unstructured Corporate Knowledge
+            </h2>
+</div>
+<div class="pl-7 border-l border-surface-variant space-y-3">
+<p class="text-body-lg font-body-lg text-on-surface leading-relaxed">
+              Unstructured enterprise disclosures, scientific pre-prints, and regulatory filings contain overlapping, complementary, or directly contradictory factual propositions that traditional semantic search and generation systems conflate or fail to audit. Standard Retrieval-Augmented Generation (RAG) relies on probabilistic embedding distances, treating textual proximity as factual truth.
+            </p>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+              When an enterprise operates across disparate quarterly filings, board prospectuses, and compliance mandates, subtle variations in dates, financial covenants, and fiscal baselines become invisible epistemological liabilities. Without structural lineage, large language models synthesize coherent hallucinations from incompatible fragments, rendering downstream audit trails non-verifiable.
+            </p>
+</div>
+</section>
+<!-- Section 2 -->
+<section class="group">
+<div class="flex items-baseline space-x-3 mb-3">
+<span class="font-mono-label text-mono-label text-primary font-bold">02 /</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface tracking-tight">
+              Atomic Fact Extraction and Exact Grounding
+            </h2>
+</div>
+<div class="pl-7 border-l border-surface-variant space-y-3">
+<p class="text-body-lg font-body-lg text-on-surface leading-relaxed">
+              Veriscribe replaces probabilistic document chunking with a deterministic parse pipeline. Dense PDF paragraphs, tables, and charts are parsed into standalone, atomic factual assertions, each bound to exact coordinate vectors, bounding boxes, and verbatim citations linked permanently to the canonical page source.
+            </p>
+<div class="bg-surface-container-low border border-surface-variant p-4 my-2">
+<div class="flex items-center justify-between pb-2 mb-2 border-b border-surface-variant text-caption font-caption text-on-surface-variant">
+<span class="font-mono-label text-mono-label uppercase text-primary font-semibold">Canonical Token Offsets</span>
+<span class="font-mono-metric-md text-mono-metric-md">INDEX REF: DOC-04 • P.18 • §2.1</span>
+</div>
+<p class="font-mono-metric-md text-mono-metric-md text-on-surface">
+                "Total Q3 capital expenditure confirmed at $42.8M within primary data infrastructure facilities."
+              </p>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+              Each extracted entity possesses an immutable cryptographic hash based on its character span and layout topology. This ensures analysts can inspect the raw evidentiary substrate in the adjacent viewer without context degradation or token transposition.
+            </p>
+</div>
+</section>
+<!-- Section 3 -->
+<section class="group">
+<div class="flex items-baseline space-x-3 mb-3">
+<span class="font-mono-label text-mono-label text-primary font-bold">03 /</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface tracking-tight">
+              Graph-Based Reconciliation &amp; Dialectical Reasoning
+            </h2>
+</div>
+<div class="pl-7 border-l border-surface-variant space-y-3">
+<p class="text-body-lg font-body-lg text-on-surface leading-relaxed">
+              Extracted claims are indexed into a hypergraph alignment engine that continuously cross-references factual assertions across corporate corpora. Rather than applying subjective heuristic scoring, Veriscribe clusters parallel assertions into four mathematically governed epistemic categories:
+            </p>
+<!-- Epistemic Matrix Badges Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 pb-1">
+<div class="p-3 border border-on-surface bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-mono-label text-mono-label text-on-surface font-semibold">[✓] Corroborated</span>
+<span class="font-mono-metric-md text-mono-metric-md text-primary">CONF: 99.4%</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  Claims validated across multiple independent canonical filings with identical semantic invariants.
+                </p>
+</div>
+<div class="p-3 border border-on-surface bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-mono-label text-mono-label text-on-surface font-semibold">[✕] Contradicted</span>
+<span class="font-mono-metric-md text-mono-metric-md text-error">DELTA &gt; 0.0</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  Irreconcilable factual tensions between sources, indexed into a comparative typographic ledger.
+                </p>
+</div>
+<div class="p-3 border border-outline bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-mono-label text-mono-label text-on-surface font-semibold">[⚖] Reconciled Divergence</span>
+<span class="font-mono-metric-md text-mono-metric-md text-secondary">TIME-VARIANT</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  Apparent discrepancies resolved by temporal precedence, revision filings, or scope qualifiers.
+                </p>
+</div>
+<div class="p-3 border border-outline bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-mono-label text-mono-label text-on-surface font-semibold">[?] Ambiguous</span>
+<span class="font-mono-metric-md text-mono-metric-md text-on-surface-variant">INSUFFICIENT DATA</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+                  Assertions lacking verifiable evidentiary anchors or containing under-specified parameters.
+                </p>
+</div>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant leading-relaxed">
+              Dialectical consensus is evaluated through strict symbolic logic trees. Analysts are presented with verifiable claim chains rather than aggregated text summaries, enabling rapid evidentiary verification in high-stakes environments.
+            </p>
+</div>
+</section>
+<!-- Methodology Specification Box -->
+<section class="mt-14 pt-8 border-t border-surface-variant">
+<div class="border border-outline-variant bg-surface-container-lowest">
+<div class="bg-surface-container px-4 py-2.5 border-b border-outline-variant flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[16px] text-primary">terminal</span>
+<span class="font-mono-label text-mono-label uppercase tracking-wider text-on-surface font-semibold">
+                  System Attributes &amp; Benchmarks
+                </span>
+</div>
+<span class="font-mono-label text-mono-label text-on-surface-variant">
+                RELEASE SPEC 2.4.0
+              </span>
+</div>
+<div class="divide-y divide-surface-variant font-mono-metric-md text-mono-metric-md">
+<div class="px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between hover:bg-surface-container-low transition-colors duration-100">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Parsing latency</span>
+<span class="text-on-surface font-semibold mt-1 sm:mt-0">&lt; 1.4s per page</span>
+</div>
+<div class="px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between hover:bg-surface-container-low transition-colors duration-100">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Fact extraction precision</span>
+<span class="text-primary font-semibold mt-1 sm:mt-0">98.8%</span>
+</div>
+<div class="px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between hover:bg-surface-container-low transition-colors duration-100">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Conflict resolution matrix</span>
+<span class="text-on-surface font-semibold mt-1 sm:mt-0">Multi-document graph alignment</span>
+</div>
+<div class="px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between hover:bg-surface-container-low transition-colors duration-100">
+<span class="text-on-surface-variant font-body-sm text-body-sm">Provenance traceability</span>
+<span class="text-primary font-semibold mt-1 sm:mt-0">100% coordinate-anchored</span>
+</div>
+</div>
+<div class="bg-surface-container-low px-4 py-2 border-t border-outline-variant flex items-center justify-between text-caption font-caption text-on-surface-variant">
+<span>EVALUATION PROTOCOL: NIST-TREC VERIFIED TEST CORPUS</span>
+<span class="font-mono-label text-mono-label">DETERMINISTIC PIPELINE</span>
+</div>
+</div>
+</section>
+</article>
+</div>
+</main>
+<!-- Footer (Shared Component from JSON) -->
+<footer class="bg-surface-container-low dark:bg-inverse-surface border-t border-surface-variant dark:border-outline-variant w-full">
+<div class="flex justify-between items-center w-full px-layout-margin-desktop py-space-sm max-w-full">
+<p class="text-body-sm font-body-sm text-on-surface dark:text-inverse-on-surface font-medium">
+        Veriscribe — Fact Knowledge Layer · Built for Superjoin VIT 2026
+      </p>
+<div class="flex items-center space-x-4">
+<a class="text-primary dark:text-inverse-primary font-body-sm text-body-sm flex items-center space-x-1.5 hover:text-primary dark:hover:text-inverse-primary transition-colors duration-150" href="https://github.com" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[16px]">code</span>
+<span>View source</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

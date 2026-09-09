@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Veriscribe — Fact Browser &amp; Epistemic Relationships</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#2d3133",
+            "on-primary-container": "#cad3ff",
+            "secondary-fixed-dim": "#bec6e0",
+            "on-secondary-fixed-variant": "#3f465c",
+            "on-tertiary-fixed": "#0b1c30",
+            "background": "#f7f9fb",
+            "on-surface-variant": "#434655",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed": "#131b2e",
+            "primary-fixed": "#dce1ff",
+            "inverse-primary": "#b7c4ff",
+            "on-tertiary": "#ffffff",
+            "primary-fixed-dim": "#b7c4ff",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "surface-container": "#eceef0",
+            "error": "#ba1a1a",
+            "tertiary-fixed-dim": "#b7c8e1",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e0e3e5",
+            "tertiary-fixed": "#d3e4fe",
+            "on-background": "#191c1e",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#e0e3e5",
+            "on-tertiary-fixed-variant": "#38485d",
+            "inverse-on-surface": "#eff1f3",
+            "on-secondary-container": "#5c647a",
+            "surface-container-high": "#e6e8ea",
+            "surface-dim": "#d8dadc",
+            "tertiary-container": "#4d5d73",
+            "on-primary-fixed-variant": "#0039b5",
+            "on-primary": "#ffffff",
+            "primary": "#0037b0",
+            "surface": "#f7f9fb",
+            "surface-tint": "#2151da",
+            "secondary-container": "#dae2fd",
+            "on-primary-fixed": "#001551",
+            "secondary": "#565e74",
+            "primary-container": "#1d4ed8",
+            "tertiary": "#36455b",
+            "outline-variant": "#c4c5d7",
+            "outline": "#747686",
+            "on-tertiary-container": "#c5d6f0",
+            "surface-container-low": "#f2f4f6",
+            "on-surface": "#191c1e",
+            "surface-bright": "#f7f9fb",
+            "secondary-fixed": "#dae2fd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "layout-margin-desktop": "1.5rem",
+            "space-xl": "2rem",
+            "space-base": "1rem",
+            "layout-margin-mobile": "0.75rem",
+            "space-2xs": "0.125rem",
+            "space-md": "0.75rem",
+            "column-gutter": "1rem",
+            "space-sm": "0.5rem",
+            "panel-split-gutter": "1px",
+            "space-2xl": "3rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "display-lg-mobile": ["Inter"],
+            "caption": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "mono-metric-lg": ["JetBrains Mono"],
+            "mono-metric-md": ["JetBrains Mono"],
+            "headline-sm": ["Inter"],
+            "mono-label": ["JetBrains Mono"],
+            "body-sm": ["Inter"],
+            "title-md": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "body-lg": ["15px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "caption": ["11px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "mono-metric-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "mono-metric-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "mono-label": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "title-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background text-on-surface antialiased flex flex-col min-h-screen">
+<!-- TOP APP BAR -->
+<header class="bg-surface border-b border-surface-variant z-20 sticky top-0">
+<div class="flex justify-between items-center w-full px-layout-margin-desktop py-space-sm max-w-full">
+<!-- Left: Wordmark & Navigation Cluster -->
+<div class="flex items-center space-x-space-xl">
+<a class="text-headline-sm font-headline-sm text-on-surface tracking-tight font-semibold flex items-center gap-space-xs" href="#">
+<span class="material-symbols-outlined text-primary text-headline-sm" data-icon="terminal">terminal</span>
+<span>Veriscribe</span>
+</a>
+<nav class="hidden md:flex items-center space-x-space-lg">
+<a class="text-on-surface-variant pb-space-xs font-body-md text-body-md hover:text-primary transition-colors duration-150" href="#">Home</a>
+<a class="text-on-surface-variant pb-space-xs font-body-md text-body-md hover:text-primary transition-colors duration-150" href="#">Documents</a>
+<a class="border-b-2 border-primary text-primary pb-space-xs font-title-md text-title-md" href="#">Explore Facts</a>
+<a class="text-on-surface-variant pb-space-xs font-body-md text-body-md hover:text-primary transition-colors duration-150" href="#">About</a>
+</nav>
+</div>
+<!-- Right: Secondary telemetry metric & Primary Action -->
+<div class="flex items-center space-x-space-base">
+<div class="hidden sm:flex items-center gap-space-xs text-mono-metric-md font-mono-metric-md text-secondary border border-surface-variant px-space-sm py-space-xs rounded bg-surface-container-low">
+<span class="w-1.5 h-1.5 rounded-full bg-primary inline-block"></span>
+<span>12 documents · 340 facts</span>
+</div>
+<button class="bg-primary-container text-on-primary font-title-md text-body-md px-space-base py-space-xs rounded-lg hover:bg-primary transition-colors duration-150 flex items-center gap-space-xs border border-transparent">
+<span class="material-symbols-outlined text-body-md" data-icon="upload_file">upload_file</span>
+<span>Upload PDF</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN TWO-COLUMN WORKBENCH (Desktop 1440px Canvas) -->
+<main class="flex-1 flex w-full max-w-[1440px] mx-auto border-x border-surface-variant bg-surface-container-lowest">
+<!-- ========================================== -->
+<!-- LEFT COLUMN: Fact Browser (Width ~42%)   -->
+<!-- ========================================== -->
+<section class="w-full lg:w-[42%] flex flex-col border-r border-surface-variant bg-surface-container-low">
+<!-- Sticky Search & Filter Header -->
+<div class="p-space-base bg-surface-container-lowest border-b border-surface-variant space-y-space-md">
+<!-- Search Input -->
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-outline text-body-md" data-icon="search">search</span>
+<input class="w-full pl-9 pr-space-sm py-space-xs text-body-md font-body-md bg-surface-container-lowest border border-on-surface rounded-lg focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary placeholder:text-outline" placeholder="Search facts, entities, metrics (e.g. Q3 revenue, cap-ex)..." type="text" value="capital expenditure $42.8M"/>
+</div>
+<!-- Document Filter Dropdown -->
+<div class="flex items-center gap-space-xs">
+<div class="relative flex-1">
+<select class="w-full appearance-none bg-surface border border-outline-variant rounded-lg px-space-sm py-1.5 pr-8 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary">
+<option>All Ingested Documents (12)</option>
+<option>DOC-04 · SEC-10K_FY2025_ALPHACORP.pdf</option>
+<option>DOC-07 · INVESTOR_PRESENTATION_Q3.pdf</option>
+<option>DOC-08 · CLINICAL_PHASE3.pdf</option>
+<option>DOC-09 · GLOBAL_MACRO_Q4.pdf</option>
+<option>DOC-11 · AUDITOR_RECONCILIATION_REPORT.pdf</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-xs top-1/2 -translate-y-1/2 pointer-events-none text-secondary text-body-md" data-icon="expand_more">expand_more</span>
+</div>
+<button class="p-1.5 border border-outline-variant rounded-lg bg-surface text-secondary hover:text-on-surface" title="Reset Filters">
+<span class="material-symbols-outlined text-body-md" data-icon="filter_alt_off">filter_alt_off</span>
+</button>
+</div>
+<!-- Source Type Toggles -->
+<div class="flex items-center gap-space-xs pt-space-2xs text-caption font-caption overflow-x-auto">
+<button class="px-space-sm py-0.5 border border-on-surface bg-on-surface text-surface-container-lowest rounded-DEFAULT font-mono-label font-medium whitespace-nowrap">
+            All
+          </button>
+<button class="px-space-sm py-0.5 border border-outline-variant bg-surface-container-lowest text-on-surface hover:border-on-surface rounded-DEFAULT font-mono-label font-medium whitespace-nowrap">
+            Text (210)
+          </button>
+<button class="px-space-sm py-0.5 border border-outline-variant bg-surface-container-lowest text-on-surface hover:border-on-surface rounded-DEFAULT font-mono-label font-medium whitespace-nowrap">
+            Table (92)
+          </button>
+<button class="px-space-sm py-0.5 border border-outline-variant bg-surface-container-lowest text-on-surface hover:border-on-surface rounded-DEFAULT font-mono-label font-medium whitespace-nowrap">
+            Chart (38)
+          </button>
+</div>
+</div>
+<!-- Scrollable Fact Card Stream -->
+<div class="flex-1 overflow-y-auto p-space-base space-y-space-md">
+<!-- Card 1 (Active/Selected Card) -->
+<article class="border-l-4 border-l-primary-container border border-surface-variant bg-surface-container-lowest p-space-base rounded-lg shadow-sm cursor-pointer transition-all">
+<div class="flex items-center justify-between text-caption font-caption text-secondary pb-space-xs border-b border-surface-container-low mb-space-xs">
+<div class="flex items-center gap-1.5 font-mono-label">
+<span class="material-symbols-outlined text-body-md text-on-surface" data-icon="table_chart">table_chart</span>
+<span class="text-on-surface font-semibold">DOC-04</span>
+<span class="text-outline-variant">·</span>
+<span>SEC-10K_FY2025</span>
+<span class="text-outline-variant">·</span>
+<span>Page 18</span>
+</div>
+<div class="flex items-center gap-1 text-mono-label">
+<span class="text-on-surface font-semibold">[ 99.4% ]</span>
+<span class="text-on-surface tracking-tighter">●●●●●</span>
+</div>
+</div>
+<p class="text-body-md font-body-md text-on-surface leading-relaxed py-space-2xs">
+            Alphabetical Q3 capital expenditure confirmed at $42.8M within primary data infrastructure facilities.
+          </p>
+<div class="mt-space-sm flex items-center justify-between">
+<span class="inline-flex items-center gap-1 border border-on-surface px-space-xs py-0.5 rounded-DEFAULT text-caption font-mono-label text-on-surface">
+              [ 2 Corroborating · 1 Contradiction ]
+            </span>
+<span class="text-caption font-mono-label text-primary font-semibold flex items-center">
+              Active Focus 
+              <span class="material-symbols-outlined text-caption ml-0.5" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="border border-surface-variant bg-surface-container-lowest p-space-base rounded-lg hover:border-outline transition-colors cursor-pointer">
+<div class="flex items-center justify-between text-caption font-caption text-secondary pb-space-xs border-b border-surface-container-low mb-space-xs">
+<div class="flex items-center gap-1.5 font-mono-label">
+<span class="material-symbols-outlined text-body-md text-secondary" data-icon="description">description</span>
+<span class="text-on-surface font-semibold">DOC-08</span>
+<span class="text-outline-variant">·</span>
+<span>CLINICAL_PHASE3</span>
+<span class="text-outline-variant">·</span>
+<span>Page 42</span>
+</div>
+<div class="flex items-center gap-1 text-mono-label">
+<span class="text-secondary">[ 96.2% ]</span>
+<span class="text-secondary tracking-tighter">●●●●○</span>
+</div>
+</div>
+<p class="text-body-md font-body-md text-on-surface leading-relaxed py-space-2xs">
+            Primary efficacy cohort showed 78.4% response rate compared to 31.2% in control group at week 12.
+          </p>
+<div class="mt-space-sm">
+<span class="inline-flex items-center gap-1 border border-outline-variant px-space-xs py-0.5 rounded-DEFAULT text-caption font-mono-label text-secondary">
+              [ 1 Corroborating ]
+            </span>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="border border-surface-variant bg-surface-container-lowest p-space-base rounded-lg hover:border-outline transition-colors cursor-pointer">
+<div class="flex items-center justify-between text-caption font-caption text-secondary pb-space-xs border-b border-surface-container-low mb-space-xs">
+<div class="flex items-center gap-1.5 font-mono-label">
+<span class="material-symbols-outlined text-body-md text-secondary" data-icon="bar_chart">bar_chart</span>
+<span class="text-on-surface font-semibold">DOC-09</span>
+<span class="text-outline-variant">·</span>
+<span>GLOBAL_MACRO_Q4</span>
+<span class="text-outline-variant">·</span>
+<span>Page 7</span>
+</div>
+<div class="flex items-center gap-1 text-mono-label">
+<span class="text-secondary">[ 94.0% ]</span>
+<span class="text-secondary tracking-tighter">●●●●○</span>
+</div>
+</div>
+<p class="text-body-md font-body-md text-on-surface leading-relaxed py-space-2xs">
+            Headline inflation annualized delta projected to plateau at 2.8% prior to FY2026 easing cycle.
+          </p>
+<div class="mt-space-sm">
+<span class="inline-flex items-center gap-1 border border-outline-variant px-space-xs py-0.5 rounded-DEFAULT text-caption font-mono-label text-secondary">
+              [ 1 Contradiction · 1 Reconciled ]
+            </span>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="border border-surface-variant bg-surface-container-lowest p-space-base rounded-lg hover:border-outline transition-colors cursor-pointer">
+<div class="flex items-center justify-between text-caption font-caption text-secondary pb-space-xs border-b border-surface-container-low mb-space-xs">
+<div class="flex items-center gap-1.5 font-mono-label">
+<span class="material-symbols-outlined text-body-md text-secondary" data-icon="description">description</span>
+<span class="text-on-surface font-semibold">DOC-04</span>
+<span class="text-outline-variant">·</span>
+<span>SEC-10K_FY2025</span>
+<span class="text-outline-variant">·</span>
+<span>Page 23</span>
+</div>
+<div class="flex items-center gap-1 text-mono-label">
+<span class="text-secondary">[ 98.1% ]</span>
+<span class="text-secondary tracking-tighter">●●●●●</span>
+</div>
+</div>
+<p class="text-body-md font-body-md text-on-surface leading-relaxed py-space-2xs">
+            Effective corporate tax rate stood at 16.2% following international jurisdiction adjustments.
+          </p>
+<div class="mt-space-sm">
+<span class="inline-flex items-center gap-1 border border-outline-variant px-space-xs py-0.5 rounded-DEFAULT text-caption font-mono-label text-secondary">
+              [ Corroborated ]
+            </span>
+</div>
+</article>
+</div>
+</section>
+<!-- ========================================================== -->
+<!-- RIGHT COLUMN: Detail & Relationships Panel (Width ~58%)  -->
+<!-- ========================================================== -->
+<section class="w-full lg:w-[58%] flex flex-col bg-surface-container-lowest overflow-y-auto">
+<!-- Fact Inspection Header -->
+<div class="p-space-lg border-b border-surface-variant bg-surface-bright">
+<div class="flex items-center justify-between pb-space-xs text-mono-label font-mono-label text-secondary">
+<div class="flex items-center gap-1.5">
+<span>Explore Facts</span>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-bold">Fact #F-10294</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="border border-on-surface text-on-surface px-1.5 py-0.5 rounded-DEFAULT text-caption font-mono-label font-medium">[ 99.4% CONFIDENCE ]</span>
+<button class="text-secondary hover:text-on-surface" title="Copy canonical ID">
+<span class="material-symbols-outlined text-body-md" data-icon="content_copy">content_copy</span>
+</button>
+</div>
+</div>
+<h1 class="text-headline-sm font-headline-sm text-on-surface font-semibold tracking-tight mt-space-2xs mb-space-sm">
+          Alphabetical Q3 capital expenditure confirmed at $42.8M within primary data infrastructure facilities.
+        </h1>
+<!-- Forensic Metadata Strip -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-xs text-caption font-mono-label bg-surface-container-low p-space-sm rounded border border-surface-variant">
+<div>
+<span class="text-outline block text-caption">SOURCE DOCUMENT</span>
+<span class="text-on-surface truncate block font-medium" title="SEC-10K_FY2025_ALPHACORP.pdf">SEC-10K_FY2025_...pdf</span>
+</div>
+<div>
+<span class="text-outline block text-caption">SECTION / LOCATION</span>
+<span class="text-on-surface block font-medium">§2.1 Disclosures · P.18</span>
+</div>
+<div>
+<span class="text-outline block text-caption">EXTRACTION TYPE</span>
+<span class="text-on-surface block font-medium">Table 4.2 (Row 7)</span>
+</div>
+<div>
+<span class="text-outline block text-caption">BBOX COORDINATES</span>
+<span class="text-on-surface block font-medium">[x:142, y:580, w:320]</span>
+</div>
+</div>
+</div>
+<!-- Main Inspection Content Body -->
+<div class="p-space-lg space-y-space-xl">
+<!-- SECTION 1: CANONICAL EVIDENCE & GROUNDING -->
+<section class="space-y-space-xs">
+<div class="flex items-center justify-between">
+<h2 class="text-mono-label font-mono-label text-outline uppercase tracking-wider font-semibold">
+              Canonical Evidence &amp; Grounding
+            </h2>
+<span class="text-caption font-mono-label text-secondary">Token Span: #4028 – #4062</span>
+</div>
+<!-- Quoted Grounding Block -->
+<div class="border-l-4 border-on-background bg-surface-container-low p-space-base font-mono-metric-md text-on-surface leading-relaxed rounded-r border-y border-r border-surface-variant">
+            “The Corporation incurred additions to property, plant, and equipment totaling $42.8 million for the three months ended September 30, 2025, primarily focused on high-density compute clusters and secondary co-location sites.”
+          </div>
+<div class="pt-space-2xs flex items-center justify-between">
+<a class="inline-flex items-center gap-1 text-primary hover:underline font-body-sm text-body-sm font-medium" href="#">
+<span>View in canonical PDF viewer (Page 18, Row 7)</span>
+<span class="material-symbols-outlined text-caption" data-icon="open_in_new">open_in_new</span>
+</a>
+<span class="text-caption font-mono-label text-outline">Verified Hash: SHA-256·c49a1</span>
+</div>
+</section>
+<!-- SECTION 2: RELATIONSHIPS PANEL (Cross-Document Verification) -->
+<section class="space-y-space-sm pt-space-xs border-t border-surface-variant">
+<div class="flex items-center justify-between pb-space-2xs">
+<h2 class="text-mono-label font-mono-label text-outline uppercase tracking-wider font-semibold">
+              Cross-Document Epistemic Relationships (3 Identified)
+            </h2>
+<span class="text-caption font-mono-label text-secondary">Status: 1 Pending Analyst Review</span>
+</div>
+<div class="space-y-space-md">
+<!-- Relationship Item 1: CORROBORATES -->
+<div class="border border-surface-variant bg-surface-container-lowest p-space-base rounded-lg space-y-space-xs hover:border-outline transition-colors">
+<div class="flex items-center justify-between">
+<!-- Outlined Pill Badge -->
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 border border-on-surface text-on-surface rounded-DEFAULT text-caption font-mono-label font-bold">
+<span class="material-symbols-outlined text-caption" data-icon="check">check</span>
+                  [✓] CORROBORATES
+                </span>
+<span class="text-caption font-mono-label text-secondary">Alignment Score: 0.98</span>
+</div>
+<div class="pt-space-2xs">
+<p class="text-body-md font-body-md text-on-surface font-medium">
+                  “Infrastructure investment in data cluster real estate reached $42.8M in late fiscal 2025.”
+                </p>
+<div class="flex items-center gap-1.5 text-caption font-mono-label text-outline mt-1">
+<span class="material-symbols-outlined text-caption" data-icon="source">source</span>
+<span class="text-on-surface font-semibold">DOC-07:</span>
+<span>INVESTOR_PRESENTATION_Q3.pdf (Slide 12)</span>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-secondary pt-1 border-t border-surface-container-low leading-normal">
+                Exact monetary congruence and identical temporal window. Both filings cite primary compute facilities expansion.
+              </p>
+</div>
+<!-- Relationship Item 2: CONTRADICTS (Currently Selected with Accent Color) -->
+<div class="border-2 border-primary-container bg-surface-container-lowest p-space-base rounded-lg space-y-space-xs relative">
+<div class="flex items-center justify-between">
+<!-- Outlined Pill Badge with X Icon & Accent Highlight -->
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 border border-primary-container text-primary-container rounded-DEFAULT text-caption font-mono-label font-bold">
+<span class="material-symbols-outlined text-caption" data-icon="close">close</span>
+                  [✕] CONTRADICTS
+                </span>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1 text-caption font-mono-label text-primary font-semibold">
+<span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
+                    Selected for Resolution
+                  </span>
+<button class="text-caption font-mono-label border border-primary-container bg-primary-container text-on-primary px-space-xs py-0.5 rounded-DEFAULT hover:bg-primary transition-colors">
+                    Reconcile
+                  </button>
+</div>
+</div>
+<div class="pt-space-2xs">
+<p class="text-body-md font-body-md text-on-surface font-medium">
+                  “Capital outlays for core server and computing hardware totaled $36.2M for the third quarter.”
+                </p>
+<div class="flex items-center gap-1.5 text-caption font-mono-label text-outline mt-1">
+<span class="material-symbols-outlined text-caption" data-icon="source">source</span>
+<span class="text-on-surface font-semibold">DOC-11:</span>
+<span>AUDITOR_RECONCILIATION_REPORT.pdf (Page 5)</span>
+</div>
+</div>
+<div class="pt-1.5 border-t border-surface-container-low">
+<p class="text-body-sm font-body-sm text-secondary leading-normal">
+<span class="font-semibold text-on-surface">Discrepancy: $6.6M delta.</span> Auditor report excludes leased data center fixtures which are aggregated into the primary 10-K filing figure.
+                </p>
+</div>
+</div>
+<!-- Relationship Item 3: RECONCILED DIVERGENCE -->
+<div class="border border-surface-variant bg-surface-container-lowest p-space-base rounded-lg space-y-space-xs hover:border-outline transition-colors">
+<div class="flex items-center justify-between">
+<!-- Outlined Pill Badge with Balance Scales Glyph -->
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 border border-on-surface text-on-surface rounded-DEFAULT text-caption font-mono-label font-bold">
+<span class="material-symbols-outlined text-caption" data-icon="balance">balance</span>
+                  [⚖] RECONCILED DIVERGENCE
+                </span>
+<span class="text-caption font-mono-label text-secondary">GAAP Adjustment Validated</span>
+</div>
+<div class="pt-space-2xs">
+<p class="text-body-md font-body-md text-on-surface font-medium">
+                  “Q3 net hardware capital additions reported at $42.8M before depreciation of legacy assets.”
+                </p>
+<div class="flex items-center gap-1.5 text-caption font-mono-label text-outline mt-1">
+<span class="material-symbols-outlined text-caption" data-icon="source">source</span>
+<span class="text-on-surface font-semibold">DOC-01:</span>
+<span>INTERNAL_FINANCIAL_LEDGER.pdf (Page 89)</span>
+</div>
+</div>
+<p class="text-body-sm font-body-sm text-secondary pt-1 border-t border-surface-container-low leading-normal">
+                Temporal delta reconciled via GAAP-to-non-GAAP adjustment notes; discrepancy reflects timing of asset capitalization.
+              </p>
+</div>
+</div>
+</section>
+</div>
+</section>
+</main>
+<!-- PERSISTENT FOOTER (Shared Component Anchor) -->
+<footer class="bg-surface-container-low border-t border-surface-variant z-10">
+<div class="flex justify-between items-center w-full px-layout-margin-desktop py-space-sm max-w-full">
+<div class="flex items-center gap-space-sm">
+<span class="text-body-sm font-body-sm text-on-surface font-medium">
+          Veriscribe — Fact Knowledge Layer · Built for Superjoin VIT 2026
+        </span>
+</div>
+<div class="flex items-center space-x-space-lg">
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-150 flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-body-md" data-icon="code">code</span>
+<span>View source</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

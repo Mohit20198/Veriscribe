@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-surface antialiased" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Veriscribe — Fact Knowledge Layer</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#2d3133",
+            "on-primary-container": "#cad3ff",
+            "secondary-fixed-dim": "#bec6e0",
+            "on-secondary-fixed-variant": "#3f465c",
+            "on-tertiary-fixed": "#0b1c30",
+            "background": "#f7f9fb",
+            "on-surface-variant": "#434655",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed": "#131b2e",
+            "primary-fixed": "#dce1ff",
+            "inverse-primary": "#b7c4ff",
+            "on-tertiary": "#ffffff",
+            "primary-fixed-dim": "#b7c4ff",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "surface-container": "#eceef0",
+            "error": "#ba1a1a",
+            "tertiary-fixed-dim": "#b7c8e1",
+            "on-error-container": "#93000a",
+            "surface-variant": "#e0e3e5",
+            "tertiary-fixed": "#d3e4fe",
+            "on-background": "#191c1e",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#e0e3e5",
+            "on-tertiary-fixed-variant": "#38485d",
+            "inverse-on-surface": "#eff1f3",
+            "on-secondary-container": "#5c647a",
+            "surface-container-high": "#e6e8ea",
+            "surface-dim": "#d8dadc",
+            "tertiary-container": "#4d5d73",
+            "on-primary-fixed-variant": "#0039b5",
+            "on-primary": "#ffffff",
+            "primary": "#0037b0",
+            "surface": "#f7f9fb",
+            "surface-tint": "#2151da",
+            "secondary-container": "#dae2fd",
+            "on-primary-fixed": "#001551",
+            "secondary": "#565e74",
+            "primary-container": "#1d4ed8",
+            "tertiary": "#36455b",
+            "outline-variant": "#c4c5d7",
+            "outline": "#747686",
+            "on-tertiary-container": "#c5d6f0",
+            "surface-container-low": "#f2f4f6",
+            "on-surface": "#191c1e",
+            "surface-bright": "#f7f9fb",
+            "secondary-fixed": "#dae2fd"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "layout-margin-desktop": "1.5rem",
+            "space-xl": "2rem",
+            "space-base": "1rem",
+            "layout-margin-mobile": "0.75rem",
+            "space-2xs": "0.125rem",
+            "space-md": "0.75rem",
+            "column-gutter": "1rem",
+            "space-sm": "0.5rem",
+            "panel-split-gutter": "1px",
+            "space-2xl": "3rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-lg": ["Inter"],
+            "display-lg-mobile": ["Inter"],
+            "caption": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-md": ["Inter"],
+            "mono-metric-lg": ["JetBrains Mono"],
+            "mono-metric-md": ["JetBrains Mono"],
+            "headline-sm": ["Inter"],
+            "mono-label": ["JetBrains Mono"],
+            "body-sm": ["Inter"],
+            "title-md": ["Inter"],
+            "body-md": ["Inter"]
+          },
+          "fontSize": {
+            "body-lg": ["15px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "display-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "caption": ["11px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "mono-metric-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "mono-metric-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "mono-label": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "body-sm": ["12px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "title-md": ["15px", { "lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-md": ["13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="flex flex-col min-h-screen bg-background text-on-surface">
+<!-- TopNavBar (Shared Component from JSON) -->
+<header class="w-full bg-surface border-b border-surface-variant z-40 sticky top-0">
+<div class="flex justify-between items-center w-full px-layout-margin-desktop py-space-sm max-w-full">
+<div class="flex items-center gap- space-xl">
+<a class="text-headline-sm font-headline-sm text-on-surface tracking-tight font-semibold hover:text-primary transition-colors duration-150" href="#">
+          Veriscribe
+        </a>
+<nav class="flex items-center gap-space-lg">
+<!-- Active link per JSON & intent: Home -->
+<a class="border-b-2 border-primary text-primary pb-space-xs font-title-md text-title-md" href="#">
+            Home
+          </a>
+<a class="text-on-surface-variant pb-space-xs font-body-md text-body-md hover:text-primary transition-colors duration-150" href="#">
+            Documents
+          </a>
+<a class="text-on-surface-variant pb-space-xs font-body-md text-body-md hover:text-primary transition-colors duration-150" href="#">
+            Explore Facts
+          </a>
+<a class="text-on-surface-variant pb-space-xs font-body-md text-body-md hover:text-primary transition-colors duration-150" href="#">
+            About
+          </a>
+</nav>
+</div>
+<div class="flex items-center gap-space-base">
+<span class="text-mono-metric-md font-mono-metric-md text-on-surface-variant hidden md:inline">
+          12 documents · 340 facts
+        </span>
+<button class="bg-primary-container text-on-primary hover:bg-primary transition-colors duration-150 px-space-base py-space-xs rounded-lg font-title-md text-title-md flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px]">upload</span>
+<span>Upload PDF</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Canvas Frame -->
+<main class="flex-1 w-full max-w-[1440px] mx-auto px-layout-margin-desktop py-space-xl flex flex-col gap-space-2xl">
+<!-- Hero Section -->
+<section class="border border-surface-variant bg-surface-container-lowest p-space-2xl rounded-lg">
+<div class="max-w-4xl flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="border border-on-surface text-on-surface font-mono-label text-mono-label px-space-xs py-space-2xs uppercase">
+            [✓] Epistemological Engine
+          </span>
+<span class="border border-surface-variant font-mono-label text-mono-label px-space-xs py-space-2xs text-on-surface-variant">
+            CONF: 99.4%
+          </span>
+</div>
+<h1 class="text-display-lg font-display-lg text-on-surface tracking-tight">
+          The Automated Fact Knowledge Layer for Enterprise PDFs.
+        </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-3xl">
+          Extract atomic assertions, verify contextual citations, and cross-reconcile contradictory and corroborating evidence with mathematical rigor.
+        </p>
+<div class="flex items-center gap-space-base pt-space-md">
+<button class="bg-primary-container text-on-primary hover:bg-primary transition-colors duration-150 px-space-lg py-space-sm rounded-lg font-title-md text-title-md flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+<span>Upload PDF</span>
+</button>
+<button class="bg-surface-container-lowest border border-on-surface text-on-surface hover:bg-surface-container-low transition-colors duration-150 px-space-lg py-space-sm rounded-lg font-title-md text-title-md flex items-center gap-space-sm">
+<span>Explore Sample Facts</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Stat Tiles Row: 4 bordered minimalist rectangular boxes -->
+<section>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-base">
+<!-- Box 1 -->
+<div class="border border-surface-variant bg-surface-container-lowest p-space-lg rounded-lg flex flex-col justify-between">
+<div>
+<div class="text-mono-metric-lg font-mono-metric-lg text-on-surface text-[32px] leading-tight font-semibold">
+              12
+            </div>
+<div class="text-title-md font-title-md text-on-surface mt-space-xs">
+              Total Analyzed Documents
+            </div>
+</div>
+<div class="text-caption font-caption text-on-surface-variant mt-space-md border-t border-surface-variant pt-space-xs font-mono-label">
+            INDEXED_STORAGE: 100%
+          </div>
+</div>
+<!-- Box 2 -->
+<div class="border border-surface-variant bg-surface-container-lowest p-space-lg rounded-lg flex flex-col justify-between">
+<div>
+<div class="text-mono-metric-lg font-mono-metric-lg text-on-surface text-[32px] leading-tight font-semibold">
+              340
+            </div>
+<div class="text-title-md font-title-md text-on-surface mt-space-xs">
+              Extracted Grounded Facts
+            </div>
+</div>
+<div class="text-caption font-caption text-on-surface-variant mt-space-md border-t border-surface-variant pt-space-xs font-mono-label">
+            AVG_PRECISION: 98.8%
+          </div>
+</div>
+<!-- Box 3 -->
+<div class="border border-surface-variant bg-surface-container-lowest p-space-lg rounded-lg flex flex-col justify-between">
+<div>
+<div class="text-mono-metric-lg font-mono-metric-lg text-on-surface text-[20px] leading-tight font-semibold">
+              184 Corroborations
+            </div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mt-space-xs">
+              Multi-source alignment across documents
+            </div>
+</div>
+<div class="text-caption font-caption text-on-surface-variant mt-space-md border-t border-surface-variant pt-space-xs font-mono-label">
+            STATUS: [✓] VERIFIED
+          </div>
+</div>
+<!-- Box 4 -->
+<div class="border border-surface-variant bg-surface-container-lowest p-space-lg rounded-lg flex flex-col justify-between">
+<div>
+<div class="text-mono-metric-lg font-mono-metric-lg text-on-surface text-[18px] leading-tight font-semibold">
+              28 Contradictions · 42 Reconciled
+            </div>
+<div class="text-body-sm font-body-sm text-on-surface-variant mt-space-xs">
+              Identified &amp; reconciled assertions
+            </div>
+</div>
+<div class="text-caption font-caption text-on-surface-variant mt-space-md border-t border-surface-variant pt-space-xs font-mono-label">
+            DELTA_ANALYSIS: [⚖] ACTIVE
+          </div>
+</div>
+</div>
+</section>
+<!-- How It Works Section: 3-Step Verification Pipeline -->
+<section class="border border-surface-variant bg-surface-container-lowest p-space-xl rounded-lg">
+<div class="border-b border-surface-variant pb-space-md mb-space-lg flex justify-between items-end">
+<div>
+<span class="text-mono-label font-mono-label text-on-surface-variant uppercase">Methodology</span>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">3-Step Verification Pipeline</h2>
+</div>
+<span class="text-mono-label font-mono-label text-on-surface-variant">ARCHITECTURAL_PIPELINE // V2.4</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-xl relative">
+<!-- Step 01 -->
+<div class="flex flex-col gap-space-sm border-l-2 border-on-surface pl-space-base">
+<div class="text-mono-label font-mono-label text-on-surface font-semibold">
+            [ 1 ]
+          </div>
+<h3 class="text-title-md font-title-md text-on-surface">Upload &amp; Ingest</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            PDF parsing, OCR layout analysis, table &amp; chart vectorization with coordinate-level boundary preservation.
+          </p>
+<div class="text-mono-label font-mono-label text-on-surface-variant pt-space-xs">
+            SUBROUTINE: PARSE_LAYOUT_TREE
+          </div>
+</div>
+<!-- Step 02 -->
+<div class="flex flex-col gap-space-sm border-l-2 border-on-surface pl-space-base">
+<div class="text-mono-label font-mono-label text-on-surface font-semibold">
+            [ 2 ]
+          </div>
+<h3 class="text-title-md font-title-md text-on-surface">Extract &amp; Ground</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            Atomic fact decomposition, exact blockquote citation, and deterministic bounding box anchors back to the canonical source.
+          </p>
+<div class="text-mono-label font-mono-label text-on-surface-variant pt-space-xs">
+            SUBROUTINE: EXTRACT_ATOMIC_PROPOSITIONS
+          </div>
+</div>
+<!-- Step 03 -->
+<div class="flex flex-col gap-space-sm border-l-2 border-on-surface pl-space-base">
+<div class="text-mono-label font-mono-label text-on-surface font-semibold">
+            [ 3 ]
+          </div>
+<h3 class="text-title-md font-title-md text-on-surface">Compare &amp; Reason</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+            Cross-document reconciliation, contradiction resolution matrices, and semantic knowledge graph clustering.
+          </p>
+<div class="text-mono-label font-mono-label text-on-surface-variant pt-space-xs">
+            SUBROUTINE: CROSS_RECONCILIATION_GRAPH
+          </div>
+</div>
+</div>
+</section>
+<!-- Recent Activity / Live Stream summary teaser -->
+<section class="border border-surface-variant bg-surface-container-lowest rounded-lg overflow-hidden">
+<div class="px-space-lg py-space-md border-b border-surface-variant flex justify-between items-center bg-surface-container-low">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[18px] text-on-surface">table_chart</span>
+<h3 class="text-title-md font-title-md text-on-surface">Recent Activity · Ingestion Stream</h3>
+</div>
+<span class="text-mono-label font-mono-label text-on-surface-variant">LIVE FEED · SYNCHRONIZED</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-variant bg-surface-container-low/50">
+<th class="py-space-sm px-space-lg font-mono-label text-mono-label text-on-surface-variant uppercase">Document Identifier</th>
+<th class="py-space-sm px-space-lg font-mono-label text-mono-label text-on-surface-variant uppercase">Ingestion Timestamp</th>
+<th class="py-space-sm px-space-lg font-mono-label text-mono-label text-on-surface-variant uppercase">Fact Yield</th>
+<th class="py-space-sm px-space-lg font-mono-label text-mono-label text-on-surface-variant uppercase">Status &amp; Alignment</th>
+<th class="py-space-sm px-space-lg font-mono-label text-mono-label text-on-surface-variant uppercase text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-space-sm px-space-lg">
+<div class="font-title-md text-title-md text-on-surface">SEC-10K_FY2025_ALPHACORP.pdf</div>
+<div class="text-mono-label font-mono-label text-on-surface-variant">DOC-08 · SHA-256: 4f1a..88d1</div>
+</td>
+<td class="py-space-sm px-space-lg text-mono-metric-md font-mono-metric-md text-on-surface-variant">
+                12 MIN AGO
+              </td>
+<td class="py-space-sm px-space-lg">
+<span class="text-mono-metric-md font-mono-metric-md text-on-surface font-semibold">48 facts</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant"> (12 tabular)</span>
+</td>
+<td class="py-space-sm px-space-lg">
+<div class="inline-flex items-center gap-space-xs border border-on-surface px-space-xs py-space-2xs text-caption font-mono-label text-on-surface">
+<span>[✓] Corroborated</span>
+<span class="text-on-surface-variant">| 99.2%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-lg text-right">
+<button class="border border-on-surface text-on-surface hover:bg-surface-container font-mono-label text-mono-label px-space-sm py-space-2xs rounded">
+                  INSPECT
+                </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-space-sm px-space-lg">
+<div class="font-title-md text-title-md text-on-surface">CLINICAL_TRIAL_PHASE3_BETA.pdf</div>
+<div class="text-mono-label font-mono-label text-on-surface-variant">DOC-09 · SHA-256: c32b..09e4</div>
+</td>
+<td class="py-space-sm px-space-lg text-mono-metric-md font-mono-metric-md text-on-surface-variant">
+                48 MIN AGO
+              </td>
+<td class="py-space-sm px-space-lg">
+<span class="text-mono-metric-md font-mono-metric-md text-on-surface font-semibold">92 facts</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant"> (34 claims)</span>
+</td>
+<td class="py-space-sm px-space-lg">
+<div class="inline-flex items-center gap-space-xs border border-on-surface px-space-xs py-space-2xs text-caption font-mono-label text-on-surface">
+<span>[✕] 2 Contradictions</span>
+<span class="text-on-surface-variant">| Ref DOC-04</span>
+</div>
+</td>
+<td class="py-space-sm px-space-lg text-right">
+<button class="border border-on-surface text-on-surface hover:bg-surface-container font-mono-label text-mono-label px-space-sm py-space-2xs rounded">
+                  INSPECT
+                </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors duration-150">
+<td class="py-space-sm px-space-lg">
+<div class="font-title-md text-title-md text-on-surface">GLOBAL_MACRO_SURVEY_Q4.pdf</div>
+<div class="text-mono-label font-mono-label text-on-surface-variant">DOC-10 · SHA-256: e87f..33a0</div>
+</td>
+<td class="py-space-sm px-space-lg text-mono-metric-md font-mono-metric-md text-on-surface-variant">
+                2 HOURS AGO
+              </td>
+<td class="py-space-sm px-space-lg">
+<span class="text-mono-metric-md font-mono-metric-md text-on-surface font-semibold">61 facts</span>
+<span class="text-body-sm font-body-sm text-on-surface-variant"> (18 numeric)</span>
+</td>
+<td class="py-space-sm px-space-lg">
+<div class="inline-flex items-center gap-space-xs border border-on-surface px-space-xs py-space-2xs text-caption font-mono-label text-on-surface">
+<span>[⚖] Reconciled</span>
+<span class="text-on-surface-variant">| Margin ±0.4%</span>
+</div>
+</td>
+<td class="py-space-sm px-space-lg text-right">
+<button class="border border-on-surface text-on-surface hover:bg-surface-container font-mono-label text-mono-label px-space-sm py-space-2xs rounded">
+                  INSPECT
+                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component from JSON) -->
+<footer class="w-full bg-surface-container-low border-t border-surface-variant mt-auto">
+<div class="flex justify-between items-center w-full px-layout-margin-desktop py-space-sm max-w-full">
+<div class="text-body-sm font-body-sm text-on-surface font-medium">
+        Veriscribe — Fact Knowledge Layer · Built for Superjoin VIT 2026
+      </div>
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">code</span>
+<a class="text-on-surface-variant font-body-sm text-body-sm hover:text-primary transition-colors duration-150" href="#">
+          View source
+        </a>
+</div>
+</div>
+</footer>
+</body></html>
